@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#151515" />
     <title>ちいかわパズル | 楽しいオンラインパズルゲーム</title>
     <meta name="description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
     <meta name="keywords" content="ちいかわ, パズル, ゲーム, オンライン, 無料, 子供, かわいい">
@@ -14,14 +16,14 @@
     <meta property="og:url" content="http://kaloodinaz.github.io/chiikawa-puzzle/">
     <meta property="og:title" content="ちいかわパズル | 楽しいオンラインパズルゲーム">
     <meta property="og:description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
-    <meta property="og:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.png">
+    <meta property="og:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="http://kaloodinaz.github.io/chiikawa-puzzle/">
     <meta property="twitter:title" content="ちいかわパズル | 楽しいオンラインパズルゲーム">
     <meta property="twitter:description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
-    <meta property="twitter:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.png">
+    <meta property="twitter:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23FFB6C1'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%23000'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%23000'/%3E%3Cpath d='M20 36 Q32 48 44 36' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M32 16 Q36 8 40 16' fill='%23FFB6C1' stroke='%23000' stroke-width='1'/%3E%3Cpath d='M24 16 Q28 8 32 16' fill='%23FFB6C1' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E">
@@ -330,9 +332,25 @@
         .info-card:nth-child(3) {
             animation-delay: 0.4s;
         }
+        .block{display:flex;justify-content:center;align-items:center;margin:0 auto}
+.block-300{display:none;width:100%;height:250px;background-color:#8f7a66}
+.block-728{display:none;width:100%;max-width:728px;height:90px;background-color:#8f7a66}
+@media only screen and (max-width: 738px) {
+.block-300{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-728{display:none}
+}
+@media only screen and (min-width: 739px) {
+.block-728{display:flex;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-300{display:none}
+}
     </style>
 </head>
 <body>
+ <script>
+    if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js')
+    .then(registration => {console.log('Service Worker registered successfully:', registration);})
+    .catch(error => {console.log('Error in Service Worker registration:', error);});});}
+    </script>
     <header>
         <div class="container">
             <div class="header-content">
@@ -382,6 +400,17 @@
                     <h3>🎯 遊び方</h3>
                     <p>画面上のパズルピースをドラッグして、正しい位置に配置してください。全てのピースを正しい場所に置くとパズルが完成します。フルスクリーンボタンを押すと、より大きな画面でゲームを楽しめます。リラックスして、ちいかわたちと楽しい時間をお過ごしください。</p>
                 </div>
+                  <hr>
+    <div class="block block-728"><script type="text/javascript">
+     atOptions = {
+       'key' : 'd1d26e15f7c349fd8e403bb5ea491a31',
+       'format' : 'iframe',
+       'height' : 90,
+       'width' : 728,
+       'params' : {}
+     };
+   </script>
+   <script type="text/javascript" src="//www.highperformanceformat.com/d1d26e15f7c349fd8e403bb5ea491a31/invoke.js"></script></div>
             </section>
         </div>
     </main>
