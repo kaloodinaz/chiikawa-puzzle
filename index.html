@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ちいかわパズル | 楽しいオンラインパズルゲーム</title>
+    <meta name="description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
+    <meta name="keywords" content="ちいかわ, パズル, ゲーム, オンライン, 無料, 子供, かわいい">
+    <meta name="author" content="Chiikawa Puzzle">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://kaloodinaz.github.io/chiikawa-puzzle/">
+    <meta property="og:title" content="ちいかわパズル | 楽しいオンラインパズルゲーム">
+    <meta property="og:description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
+    <meta property="og:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="http://kaloodinaz.github.io/chiikawa-puzzle/">
+    <meta property="twitter:title" content="ちいかわパズル | 楽しいオンラインパズルゲーム">
+    <meta property="twitter:description" content="ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム。無料でプレイできる、子供から大人まで楽しめるパズルゲームです。">
+    <meta property="twitter:image" content="http://kaloodinaz.github.io/chiikawa-puzzle/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23FFB6C1'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%23000'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%23000'/%3E%3Cpath d='M20 36 Q32 48 44 36' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M32 16 Q36 8 40 16' fill='%23FFB6C1' stroke='%23000' stroke-width='1'/%3E%3Cpath d='M24 16 Q28 8 32 16' fill='%23FFB6C1' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ちいかわパズル",
+      "description": "ちいかわの可愛いキャラクターたちと一緒に楽しむオンラインパズルゲーム",
+      "url": "http://kaloodinaz.github.io/chiikawa-puzzle/",
+      "applicationCategory": "Game",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Chiikawa Puzzle"
+      },
+      "inLanguage": "ja",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Children and Adults"
+      }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 50%, #E6E6FA 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF69B4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo::before {
+            content: "🐾";
+            margin-right: 0.5rem;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .game-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .game-title {
+            text-align: center;
+            color: #FF1493;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: #fff;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
+        }
+
+        .fullscreen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .fullscreen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .fullscreen-btn:active {
+            transform: translateY(0);
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: #FF1493;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features-list li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+
+        footer {
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .game-title {
+                font-size: 1.8rem;
+            }
+
+            .game-section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .game-frame {
+                height: 400px;
+            }
+
+            .fullscreen-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                top: 8px;
+                right: 8px;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-card {
+                padding: 1.5rem;
+            }
+
+            .info-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-frame {
+                height: 350px;
+            }
+
+            .game-title {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Fullscreen styles */
+        .fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            background: #000 !important;
+        }
+
+        .fullscreen .game-frame {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-section, .info-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .info-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .info-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ちいかわパズル</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="game-section">
+                <h1 class="game-title">ちいかわと一緒にパズルを楽しもう！</h1>
+                <div class="game-container" id="gameContainer">
+                    <iframe 
+                        class="game-frame" 
+                        id="gameFrame"
+                        src="https://html-classic.itch.zone/html/14669242/index.html"
+                        title="ちいかわパズルゲーム"
+                        allow="fullscreen"
+                        loading="lazy">
+                    </iframe>
+                    <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
+                        フルスクリーン
+                    </button>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="info-card">
+                    <h3>🎮 ゲームについて</h3>
+                    <p>ちいかわの世界観を楽しみながら、頭を使って楽しむパズルゲームです。可愛いキャラクターたちと一緒に、様々なレベルのパズルに挑戦しましょう。子供から大人まで、誰でも気軽に楽しめるゲームデザインになっています。</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>⭐ 特徴</h3>
+                    <ul class="features-list">
+                        <li>完全無料でプレイ可能</li>
+                        <li>スマホ・タブレット・PCに対応</li>
+                        <li>ちいかわの可愛いキャラクター</li>
+                        <li>様々な難易度のパズル</li>
+                        <li>直感的で分かりやすい操作</li>
+                        <li>フルスクリーンモード対応</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🎯 遊び方</h3>
+                    <p>画面上のパズルピースをドラッグして、正しい位置に配置してください。全てのピースを正しい場所に置くとパズルが完成します。フルスクリーンボタンを押すと、より大きな画面でゲームを楽しめます。リラックスして、ちいかわたちと楽しい時間をお過ごしください。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 ちいかわパズル. すべての権利は留保されています。</p>
+                <p>ちいかわの世界を楽しんでください 🐾</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFullscreen() {
+            const container = document.getElementById('gameContainer');
+            const btn = document.getElementById('fullscreenBtn');
+            
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().then(() => {
+                    container.classList.add('fullscreen');
+                    btn.textContent = '終了';
+                }).catch(err => {
+                    console.log('フルスクリーンエラー:', err);
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    container.classList.remove('fullscreen');
+                    btn.textContent = 'フルスクリーン';
+                });
+            }
+        }
+
+        // フルスクリーン終了時の処理
+        document.addEventListener('fullscreenchange', () => {
+            const container = document.getElementById('gameContainer');
+            const btn = document.getElementById('fullscreenBtn');
+            
+            if (!document.fullscreenElement) {
+                container.classList.remove('fullscreen');
+                btn.textContent = 'フルスクリーン';
+            }
+        });
+
+        // SEO用のページ読み込み時間測定
+        window.addEventListener('load', () => {
+            const loadTime = Date.now() - performance.timing.navigationStart;
+            console.log('ページ読み込み時間:', loadTime + 'ms');
+        });
+
+        // ゲームフレームの読み込み状態を監視
+        document.getElementById('gameFrame').addEventListener('load', () => {
+            console.log('ちいかわパズルゲームが読み込まれました！');
+        });
+
+        // モバイル向けタッチ操作の最適化
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', e => {
+            const touchY = e.touches[0].clientY;
+            const touchDiff = touchStartY - touchY;
+            
+            // スクロールの制御（必要に応じて）
+            if (e.target.closest('.game-container')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // アクセシビリティ向上のためのキーボードサポート
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F11' || (e.key === 'f' && e.ctrlKey)) {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+            
+            if (e.key === 'Escape' && document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
